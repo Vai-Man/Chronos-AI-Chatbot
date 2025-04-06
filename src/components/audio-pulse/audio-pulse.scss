@@ -1,0 +1,50 @@
+.audioPulse {
+  display: flex;
+  width: 50px;
+  justify-content: space-evenly;
+  align-items: center;
+  transition: all 0.5s;
+
+  & > div {
+    background-color: var(--accent-blue);
+    border-radius: 1000px;
+    width: 6px;
+    min-height: 6px;
+    transition: height 0.1s, background-color 0.3s;
+  }
+
+  &.hover > div {
+    animation: hover 1.4s infinite alternate ease-in-out;
+  }
+
+  height: 6px;
+  transition: opacity 0.333s;
+
+  &.active {
+    opacity: 1;
+
+    & > div {
+      background-color: var(--accent-green);
+    }
+  }
+}
+
+@keyframes hover {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes pulse {
+  from {
+    scale: 1 1;
+  }
+
+  to {
+    scale: 1.2 1.2;
+  }
+}

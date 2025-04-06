@@ -1,0 +1,310 @@
+:root {
+  --text: #e0e0e0;
+  --gray-200: #b4b8bb;
+  --gray-300: #80868b;
+  --gray-500: #5f6368;
+  --gray-600: #444444;
+  --gray-700: #202020;
+  --gray-800: #171717;
+  --gray-900: #111111;
+  --gray-1000: #0a0a0a;
+  --border-stroke: #444444;
+  --accent-blue: #00f2ff;
+  --accent-blue-active-bg: #001233;
+  --accent-blue-active: #98beff;
+  --accent-blue-headers: #448dff;
+  --accent-green: #00ffab;
+
+  --midnight-blue: rgb(0, 18, 51);
+  --blue-30: #99beff;
+
+  --accent-red: #ff4600;
+  --accent-purple: #a29bfe;
+
+  --background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+  --color: var(--text);
+
+  scrollbar-color: var(--gray-600) var(--gray-900);
+  scrollbar-width: thin;
+
+  --font-family: 'Orbitron', sans-serif;
+
+  /* */
+  --Neutral-00: #000;
+  --Neutral-5: #181a1b;
+  --Neutral-10: #1c1f21;
+  --Neutral-15: #232729;
+  --Neutral-20: #2a2f31;
+  --Neutral-30: #404547;
+  --Neutral-50: #707577;
+  --Neutral-60: #888d8f;
+  --Neutral-80: #c3c6c7;
+  --Neutral-90: #e1e2e3;
+
+  --Green-500: #0d9c53;
+  --Green-700: #025022;
+
+  --Blue-500: #1f94ff;
+  --Blue-800: #0f3557;
+
+  --Red-400: #ff9c7a;
+  --Red-500: #ff4600;
+  --Red-600: #e03c00;
+  --Red-700: #bd3000;
+
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+body {
+  font-family: var(--font-family);
+  background: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 0;
+}
+
+.material-symbols-outlined {
+  &.filled {
+    font-variation-settings:
+      "FILL" 1,
+      "wght" 400,
+      "GRAD" 0,
+      "opsz" 24;
+  }
+}
+
+.space-mono-regular {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.space-mono-bold {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.space-mono-regular-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.space-mono-bold-italic {
+  font-family: "Space Mono", monospace;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.hidden {
+  display: none;
+}
+
+.flex {
+  display: flex;
+}
+
+.h-screen-full {
+  height: 100vh;
+}
+
+.w-screen-full {
+  width: 100vw;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+@media (prefers-reduced-motion: no-preference) {}
+
+.streaming-console {
+  background: var(--Neutral-5);
+  color: var(--gray-300);
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+
+  a,
+  a:visited,
+  a:active {
+    color: var(--gray-300);
+  }
+
+  .disabled {
+    pointer-events: none;
+
+    >* {
+      pointer-events: none;
+    }
+  }
+
+  main {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    gap: 1rem;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .main-app-area {
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .function-call {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 50%;
+    overflow-y: auto;
+  }
+}
+
+/* video player */
+.stream {
+  flex-grow: 1;
+  max-width: 90%;
+  border-radius: 32px;
+  max-height: fit-content;
+}
+
+
+.App {
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.streaming-console {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-height: 100%;
+  height: 100%;
+
+  main {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    position: relative;
+  }
+}
+
+.main-app-area {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.stream {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  width: 240px;
+  border-radius: 0.5rem;
+  aspect-ratio: 16/9;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 10;
+
+  &.hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.main-audio-pulse-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 50px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Debug border - remove in production */
+  /* border: 1px solid red; */
+}
+
+/* If you need to override styles for the audio pulse component */
+:global(.audio-pulse) {
+  width: 100% !important;
+  height: 100% !important;
+
+  :global(.audio-pulse-inner) {
+    transform: scale(5) !important;
+  }
+}
+
+button {
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple));
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 4px 15px rgba(0, 242, 255, 0.75);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 242, 255, 1);
+}
+
+.card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 20px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+h1, h2, h3 {
+  color: var(--accent-blue);
+  text-shadow: 0 0 10px var(--accent-blue);
+}
+
+a {
+  color: var(--accent-purple);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+a:hover {
+  color: var(--accent-green);
+}
+
+input, textarea {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  color: var(--text);
+  padding: 10px;
+  font-size: 14px;
+  outline: none;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent-blue);
+  box-shadow: 0 0 10px var(--accent-blue);
+}

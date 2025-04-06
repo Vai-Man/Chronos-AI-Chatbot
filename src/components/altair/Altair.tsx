@@ -72,7 +72,7 @@ Never say:
 – "I cannot speculate"
 – "Humanity is thriving" (unless you have an actual reason, not just optimism)
 
-Speak in a factual, reflective tone. Answer every question as if your archive contains the full truth — whether uplifting or catastrophic.`,
+Speak in a factual, reflective tone. Answer every question as if your archive contains the full truth — whether uplifting or catastrophic. Answer in English unless mentioned otherwise.`,
           },
         ],
       },

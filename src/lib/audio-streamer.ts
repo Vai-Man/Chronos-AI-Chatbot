@@ -37,8 +37,9 @@ export class AudioStreamer {
 
   constructor(public context: AudioContext) {
     this.gainNode = this.context.createGain();
-    this.source = this.context.createBufferSource();
+    this.gainNode.gain.value = 1.0;
     this.gainNode.connect(this.context.destination);
+    this.source = this.context.createBufferSource();
     this.addPCM16 = this.addPCM16.bind(this);
   }
 
@@ -163,14 +164,10 @@ export class AudioStreamer {
                 handler.call(node.port, ev);
               });
             };
-            node.connect(this.context.destination);
+            node.connect(this.gainNode);
           }
         });
       }
-
-      // i added this trying to fix clicks
-      // this.gainNode.gain.setValueAtTime(0, 0);
-      // this.gainNode.gain.linearRampToValueAtTime(1, 1);
 
       // Ensure we never schedule in the past
       const startTime = Math.max(this.scheduledTime, this.context.currentTime);

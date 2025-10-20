@@ -5,15 +5,16 @@ import { Altair } from "./components/altair/Altair";
 import ControlTray from "./components/control-tray/ControlTray";
 import AudioPulse from "./components/audio-pulse/AudioPulse";
 import cn from "classnames";
+import { LiveClientOptions } from "./types";
 
-// Validate API key
 const API_KEY = process.env.REACT_APP_GEMINI_API_KEY as string;
 if (typeof API_KEY !== "string") {
-  throw new Error("Missing Gemini API Key. Define REACT_APP_GEMINI_API_KEY in your .env file.");
+  throw new Error("set REACT_APP_GEMINI_API_KEY in .env");
 }
 
-const host = "generativelanguage.googleapis.com";
-const uri = `wss://${host}/ws/google.ai.generativelanguage.v1alpha.GenerativeService.BidiGenerateContent`;
+const apiOptions: LiveClientOptions = {
+  apiKey: API_KEY,
+};
 
 function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -28,7 +29,7 @@ function App() {
 
   return (
     <div className="App">
-      <LiveAPIProvider url={uri} apiKey={API_KEY}>
+      <LiveAPIProvider options={apiOptions}>
         <div className="streaming-console">
           <main className="main-layout">
             
